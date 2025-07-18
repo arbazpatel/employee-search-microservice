@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/usr/src/app
+
+  tests:
+    build: .
+    volumes:
+      - ./app:/usr/src/app
+      - ./tests:/usr/src/tests
+    environment:
+      - PYTHONPATH=/usr/src
+    command: /bin/sh -c "pytest tests/"
